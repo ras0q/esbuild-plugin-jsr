@@ -7,10 +7,12 @@ import {
 } from "@std/semver";
 import { bundle } from "@deno/emit";
 
+/** JsrPluginOptions is a set of options for {@link esbuildJsrPlugin} */
 export type JsrPluginOptions = {
   namespace?: string;
 };
 
+/** esbuildJsrPlugin is a function to create an esbuild plugin for jsr.io */
 export const esbuildJsrPlugin = (options?: JsrPluginOptions): Plugin => {
   const namespace = options?.namespace ?? "jsr-loader";
 
