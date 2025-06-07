@@ -1,0 +1,17 @@
+{
+  "name": "esbuild-plugin-jsr",
+  "version": "0.1.0",
+  "exports": "./mod.ts",
+  "tasks": {
+    "dev": "deno test -A --watch"
+  },
+  "license": "MIT",
+  "imports": {
+    "@deno/emit": "jsr:@deno/emit@^0.46.0",
+    "@std/assert": "jsr:@std/assert@^1.0.13",
+    "@std/async": "jsr:@std/async@^1.0.13",
+    "@std/semver": "jsr:@std/semver@^1.0.5",
+    "esbuild": "npm:esbuild@^0.25.5"
+  },
+  "nodeModulesDir": "auto"
+}
