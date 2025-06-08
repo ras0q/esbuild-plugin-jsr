@@ -6,7 +6,6 @@ import {
   parseRange as parseSemverRange,
 } from "@std/semver";
 import { bundle } from "@deno/emit";
-import * as b from "jsr:@std/path/basename";
 
 /** JsrPluginOptions is a set of options for {@link esbuildJsrPlugin} */
 export type JsrPluginOptions = {
@@ -16,8 +15,6 @@ export type JsrPluginOptions = {
 /** esbuildJsrPlugin is a function to create an esbuild plugin for jsr.io */
 export const esbuildJsrPlugin = (options?: JsrPluginOptions): Plugin => {
   const namespace = options?.namespace ?? "jsr-loader";
-
-  console.log(b);
 
   return {
     name: "jsr",
@@ -35,6 +32,8 @@ export const esbuildJsrPlugin = (options?: JsrPluginOptions): Plugin => {
         if (!isHTTP && !isJSR) return null;
 
         if (isHTTP) {
+          console.debug(`[JSR] resolved ${args.path} => ${resolved}`);
+
           return {
             external: false,
             namespace,
@@ -74,6 +73,8 @@ export const esbuildJsrPlugin = (options?: JsrPluginOptions): Plugin => {
 
           const resolvedUrl =
             `${jsrioBasePath}/${resolvedVersion}/${resolvedPath}`;
+
+          console.debug(`[JSR] resolved ${args.path} => ${resolvedUrl}`);
 
           return {
             external: false,
