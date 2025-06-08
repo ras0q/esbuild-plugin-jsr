@@ -23,6 +23,8 @@ export const esbuildJsrPlugin = (options?: JsrPluginOptions): Plugin => {
         if (args.kind !== "import-statement") return null;
         if (build.initialOptions.external?.includes(args.path)) return null;
 
+        console.debug(`[JSR] resolving ${args.path} ...`);
+
         const resolved = import.meta.resolve(args.path);
         if (!resolved) return null;
 
@@ -87,6 +89,8 @@ export const esbuildJsrPlugin = (options?: JsrPluginOptions): Plugin => {
       build.onLoad(
         { filter: /\.(ts|js)/, namespace },
         async (args) => {
+          console.debug(`[JSR] loading ${args.path} ...`);
+
           const { code } = await bundle(args.path);
 
           return {
