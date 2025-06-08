@@ -6,6 +6,7 @@ import {
   parseRange as parseSemverRange,
 } from "@std/semver";
 import { bundle } from "@deno/emit";
+import * as b from "jsr:@std/path/basename";
 
 /** JsrPluginOptions is a set of options for {@link esbuildJsrPlugin} */
 export type JsrPluginOptions = {
@@ -15,6 +16,8 @@ export type JsrPluginOptions = {
 /** esbuildJsrPlugin is a function to create an esbuild plugin for jsr.io */
 export const esbuildJsrPlugin = (options?: JsrPluginOptions): Plugin => {
   const namespace = options?.namespace ?? "jsr-loader";
+
+  console.log(b);
 
   return {
     name: "jsr",

@@ -12,6 +12,7 @@
     "jsr:@std/fs@0.223": "0.223.0",
     "jsr:@std/internal@^1.0.6": "1.0.6",
     "jsr:@std/io@0.223": "0.223.0",
+    "jsr:@std/path@*": "0.223.0",
     "jsr:@std/path@0.223": "0.223.0",
     "jsr:@std/semver@^1.0.5": "1.0.5",
     "npm:@types/node@*": "22.12.0",
@@ -25,14 +26,14 @@
         "jsr:@std/fmt",
         "jsr:@std/fs",
         "jsr:@std/io",
-        "jsr:@std/path"
+        "jsr:@std/path@0.223"
       ]
     },
     "@deno/emit@0.46.0": {
       "integrity": "e276be2c77bac1b93caf775762e2a49a54cb00da2d48ca2b01ed8d7cba9d082c",
       "dependencies": [
         "jsr:@deno/cache-dir",
-        "jsr:@std/path"
+        "jsr:@std/path@0.223"
       ]
     },
     "@deno/graph@0.73.1": {
@@ -246,6 +247,13 @@
     "undici-types@6.20.0": {
       "integrity": "sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg=="
     }
+  },
+  "remote": {
+    "https://deno.land/x/denoflate@1.2.1/mod.ts": "f5628e44b80b3d80ed525afa2ba0f12408e3849db817d47a883b801f9ce69dd6",
+    "https://deno.land/x/denoflate@1.2.1/pkg/denoflate.js": "b9f9ad9457d3f12f28b1fb35c555f57443427f74decb403113d67364e4f2caf4",
+    "https://deno.land/x/denoflate@1.2.1/pkg/denoflate_bg.wasm.js": "d581956245407a2115a3d7e8d85a9641c032940a8e810acbd59ca86afd34d44d",
+    "https://deno.land/x/esbuild@v0.25.5/mod.js": "57b9635116b05e6f214dea72d7f488c13808ee1b8055d96fa5da1c0dffe890cf",
+    "https://deno.land/x/esbuild@v0.25.5/wasm.js": "258944aaf74dbda00b68f2ddedab1e98e7fd6a756a5b3afcd1a84a5f5d378595"
   },
   "workspace": {
     "dependencies": [
