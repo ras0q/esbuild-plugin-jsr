@@ -1,5 +1,5 @@
 import * as esbuild from "esbuild";
-import esbuildJsrPlugin from "./mod.ts";
+import { esbuildJsrPlugin } from "./mod.ts";
 import { assertEquals, assertNotEquals } from "@std/assert";
 
 // TODO: fix following error

@@ -41,12 +41,12 @@ export const esbuildJsrPlugin = (options?: JsrPluginOptions): Plugin => {
 
         if (isJSR) {
           const matches = resolved.match(
-            /^jsr:(@[^/]+)\/([^@]+)@([^/]+)(?:\/(.+))?$/,
+            /^jsr:(@[^/]+\/[^@]+)(?:@([^/]+))?(?:(\/.+))?$/,
           );
           if (!matches) throw `Invalid JSR import: ${args.path}`;
 
-          const [, namespace, name, version, path] = matches;
-          const jsrioBasePath = `https://jsr.io/${namespace}/${name}`;
+          const [, packageName, version, path] = matches;
+          const jsrioBasePath = `https://jsr.io/${packageName}`;
           const meta = await (await fetch(`${jsrioBasePath}/meta.json`))
             .json() as { versions: Record<string, unknown> };
           const resolvedSemver = maxSatisfyingSemver(
@@ -54,7 +54,7 @@ export const esbuildJsrPlugin = (options?: JsrPluginOptions): Plugin => {
             parseSemverRange(version),
           );
           if (!resolvedSemver) {
-            throw `No matching version found for ${namespace}/${name}@${version}`;
+            throw `No matching version found for ${packageName}@${version}`;
           }
 
           const resolvedVersion = formatSemver(resolvedSemver);
@@ -62,7 +62,7 @@ export const esbuildJsrPlugin = (options?: JsrPluginOptions): Plugin => {
             `${jsrioBasePath}/${resolvedVersion}_meta.json`,
           )).json() as { exports: Record<string, string> };
 
-          const exportPath = path ? `./${path}` : ".";
+          const exportPath = `.${path ?? ""}`;
           const resolvedPath = versionMeta.exports[exportPath]?.replace(
             /^\.\/?/,
             "",
